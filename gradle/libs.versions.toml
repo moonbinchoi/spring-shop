@@ -1,0 +1,14 @@
+# Single source of versions for every Gradle project in this repo (Gradle version catalog format).
+# courses/*/code/* read this file via settings.gradle. projects/shop and projects/docker-lab keep a copy at gradle/libs.versions.toml.
+# gradle: not read by Gradle. Apply with `./gradlew wrapper --gradle-version <value>` run twice.
+# Library versions are managed by the Spring Boot BOM, so [libraries] is empty.
+
+[versions]
+spring-boot = "4.1.1"
+spring-dependency-management = "1.1.7"
+gradle = "9.8.1"
+java = "25"
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
