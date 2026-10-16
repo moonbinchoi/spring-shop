@@ -1,0 +1,21 @@
+{
+    "name": "shop",
+    "image": "mcr.microsoft.com/devcontainers/java:25-trixie",
+    "forwardPorts": [8081],
+    "containerEnv": {
+        "SERVER_PORT": "8081"
+    },
+    "mounts": [
+        "source=shop-gradle-home,target=/home/vscode/.gradle,type=volume"
+    ],
+    "postCreateCommand": "sudo chown vscode /home/vscode/.gradle",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "vscjava.vscode-gradle",
+                "vmware.vscode-boot-dev-pack"
+            ]
+        }
+    }
+}
