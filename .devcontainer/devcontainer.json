@@ -3,12 +3,18 @@
     "image": "mcr.microsoft.com/devcontainers/java:25-trixie",
     "forwardPorts": [8081],
     "containerEnv": {
-        "SERVER_PORT": "8081"
+        "SERVER_PORT": "8081",
+        "CLAUDE_CONFIG_DIR": "/home/vscode/.claude"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {},
+        "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
     },
     "mounts": [
-        "source=shop-gradle-home,target=/home/vscode/.gradle,type=volume"
+        "source=shop-gradle-home,target=/home/vscode/.gradle,type=volume",
+        "source=claude-code-config-${devcontainerId},target=/home/vscode/.claude,type=volume"
     ],
-    "postCreateCommand": "sudo chown vscode /home/vscode/.gradle",
+    "postCreateCommand": "sudo chown vscode /home/vscode/.gradle /home/vscode/.claude",
     "customizations": {
         "vscode": {
             "extensions": [
