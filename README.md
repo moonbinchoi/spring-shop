@@ -17,6 +17,8 @@ Spring Boot 4.1.1 / Java 25 / Gradle 기반 프로젝트입니다.
 3. 처음에는 이미지(`mcr.microsoft.com/devcontainers/java:25-trixie`)와 feature(Node, Claude Code)를 받아 컨테이너를 만듭니다. 시간이 걸립니다.
 4. 컨테이너 설정(`customizations.vscode.extensions`)에 따라 Java 확장 팩, Gradle, Spring Boot 확장이 설치됩니다.
 
+> **git worktree를 열 때:** 이 저장소의 linked git worktree를 컨테이너에서 열면 VS Code 사용자 설정 `dev.containers.experimentalMountGitWorktreeCommonDir`를 켜야 컨테이너 안에서 git이 동작합니다.
+
 ### 앱 포트: 8081
 
 `.devcontainer/devcontainer.json`에서 두 가지를 설정합니다.
@@ -24,7 +26,7 @@ Spring Boot 4.1.1 / Java 25 / Gradle 기반 프로젝트입니다.
 - `containerEnv`의 `SERVER_PORT=8081`: Spring Boot가 이 환경 변수를 읽어 8081번 포트로 뜹니다. (`application.properties`에는 포트 설정이 없습니다.)
 - `forwardPorts`의 `8081`: 컨테이너의 8081을 호스트로 포워딩합니다.
 
-포트를 바꾸려면 위 두 값을 함께 고치고 컨테이너를 Rebuild하세요. 8081로 정한 이유는 저장소 파일에 적혀 있지 않습니다.
+포트를 바꾸려면 위 두 값을 함께 고치고 컨테이너를 Rebuild하세요. 8080이 아닌 8081을 쓰는 이유는, 같은 프로젝트를 호스트에서도 8080으로 실행하므로 8080을 비워 두기 위해서입니다.
 
 ### Rebuild 뒤에도 남는 것
 
@@ -35,7 +37,7 @@ Spring Boot 4.1.1 / Java 25 / Gradle 기반 프로젝트입니다.
 | Gradle 캐시 | `/home/vscode/.gradle` | `shop-gradle-home` |
 | Claude Code 설정·로그인 | `/home/vscode/.claude` | `claude-code-config-${devcontainerId}` |
 
-- `CLAUDE_CONFIG_DIR`이 `/home/vscode/.claude`로 지정되어 있어, Claude Code 설정이 이 볼륨에 저장됩니다. 그래서 Rebuild 후에도 로그인이 유지됩니다. 볼륨 이름의 `${devcontainerId}`는 dev container마다 정해지는 값입니다.
+- `CLAUDE_CONFIG_DIR`이 `/home/vscode/.claude`로 지정되어 있어, Claude Code 설정이 이 볼륨에 저장됩니다. 볼륨 이름의 `${devcontainerId}`는 Rebuild를 해도 바뀌지 않으므로 같은 이름의 볼륨이 다시 붙고, 그래서 로그인이 유지됩니다.
 - `postCreateCommand`가 두 경로를 `vscode` 사용자 소유로 바꿉니다.
 - 볼륨 자체를 지우면 캐시와 로그인도 사라집니다.
 
