@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -34,6 +35,7 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@Validated @ModelAttribute("loginForm") LoginForm form,
                         BindingResult bindingResult,
+                        @RequestParam(defaultValue = "/") String redirectURL,
                         HttpServletRequest request) {
                             
         if (bindingResult.hasErrors())
@@ -45,7 +47,7 @@ public class LoginController {
             return "login/loginForm";
         }
         request.getSession().setAttribute(SessionConst.LOGIN_MEMBER, login);
-        return "redirect:/";
+        return "redirect:" + redirectURL;
     }
     
     @PostMapping("/logout")
