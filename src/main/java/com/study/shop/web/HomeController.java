@@ -3,9 +3,9 @@ package com.study.shop.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.study.shop.domain.member.Member;
+import com.study.shop.web.argumentresolver.Login;
 
 
 
@@ -13,7 +13,7 @@ import com.study.shop.domain.member.Member;
 public class HomeController {
     
     @GetMapping("/")
-    public String home(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member member,
+    public String home(@Login Member member,
                        Model model) {
         if (member == null) 
             return "home";
