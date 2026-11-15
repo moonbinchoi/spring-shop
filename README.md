@@ -1,6 +1,8 @@
-# shop
+# spring-shop (docker-devcontainer 브랜치)
 
-Spring Boot 4.1.1 / Java 25 / Gradle 기반 프로젝트입니다.
+[spring-shop](https://github.com/moonbinchoi/spring-shop)에 Dev Container 개발 환경을 더한 브랜치입니다. Spring Boot 4.1.1, Java 25, Gradle을 씁니다.
+
+- 학습 기간: 2026-10-16 ~ 2026-10-21, [docker-devcontainer 트랙](https://github.com/moonbinchoi/dev-learning-log/tree/main/lecture/docker-devcontainer) 7~10회차 (주: 앱 코드와 최신 README는 `main` 브랜치에 있음).
 
 ## Dev container로 열기
 
