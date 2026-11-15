@@ -4,6 +4,8 @@
 
 Spring Boot 4.1.1, Java 25, Gradle, Thymeleaf를 씁니다.
 
+- 학습 기간: 2026-10-02 ~ 진행 중 (주: 1~3회차 커밋에 화면 파일이 없는 이유는 맨 아래 "이 저장소에 없는 것"에 있음).
+
 ## 학습 기록
 
 이 앱은 [dev-learning-log](https://github.com/moonbinchoi/dev-learning-log)의 `spring-backend` 트랙 실습 프로젝트입니다. 회차별 레슨과 학습 기록은 [lecture/spring-backend](https://github.com/moonbinchoi/dev-learning-log/tree/main/lecture/spring-backend)에 있습니다.
@@ -12,13 +14,13 @@ Spring Boot 4.1.1, Java 25, Gradle, Thymeleaf를 씁니다.
 
 ## 회차별 브랜치
 
-| 브랜치 | 추가한 내용 |
-| --- | --- |
-| `lesson-01` | 상품 목록·상세·등록·수정, Bean Validation과 `BindingResult`로 폼 검증 |
-| `lesson-02` | 회원 가입, 로그인과 로그아웃, 세션에 로그인 회원 저장 |
-| `lesson-03` | 필터와 인터셉터로 로그인 확인, 로그 인터셉터, `@Login` 인자 리졸버 |
-| `docker-devcontainer` | dev container 설정, Claude Code 설치, 줄 끝 규칙, 이 README의 Dev container 안내 |
-| `main` | 위 브랜치를 모두 합친 최신 상태 |
+| 브랜치 | 추가한 내용 | 레슨 · 학습 기록 |
+| --- | --- | --- |
+| `lesson-01` | 상품 목록·상세·등록·수정, Bean Validation과 `BindingResult`로 폼 검증 | [레슨](https://moonbinchoi.github.io/dev-learning-log/lecture/spring-backend/lessons/0001-item-form-validation.html) · [기록 0002](https://github.com/moonbinchoi/dev-learning-log/blob/main/lecture/spring-backend/learning-records/0002-prg-last-request.md), [0003](https://github.com/moonbinchoi/dev-learning-log/blob/main/lecture/spring-backend/learning-records/0003-validation-flow-open-misconceptions.md) |
+| `lesson-02` | 회원 가입, 로그인과 로그아웃, 세션에 로그인 회원 저장 | [레슨](https://moonbinchoi.github.io/dev-learning-log/lecture/spring-backend/lessons/0002-member-session-login.html) · [기록 0004](https://github.com/moonbinchoi/dev-learning-log/blob/main/lecture/spring-backend/learning-records/0004-session-login-misconceptions.md) |
+| `lesson-03` | 필터와 인터셉터로 로그인 확인, 로그 인터셉터, `@Login` 인자 리졸버 | [레슨](https://moonbinchoi.github.io/dev-learning-log/lecture/spring-backend/lessons/0003-login-check-filter-interceptor.html) · [기록 0005](https://github.com/moonbinchoi/dev-learning-log/blob/main/lecture/spring-backend/learning-records/0005-login-check-misconceptions.md) |
+| `docker-devcontainer` | dev container 설정, Claude Code 설치, 줄 끝 규칙, 이 README의 Dev container 안내 | docker-devcontainer 트랙 7~10회차 |
+| `main` | 위 브랜치를 모두 합친 최신 상태 | - |
 
 ## 실행 방법
 
