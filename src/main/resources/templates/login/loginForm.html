@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="#{login.title}">로그인</title>
+  <link th:href="@{/css/bootstrap.min.css}" href="../../static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" th:href="@{/}" th:text="#{nav.brand}">Spring Shop</a>
+    <a class="btn btn-outline-light btn-sm" th:href="@{/members/add}" th:text="#{nav.signup}">회원 가입</a>
+  </div>
+</nav>
+<main class="container my-5" style="max-width: 26rem;">
+  <section class="card shadow-sm">
+    <div class="card-header" th:text="#{login.title}">로그인</div>
+    <form class="card-body" th:action="@{/login}" th:object="${loginForm}" method="post" novalidate>
+      <!-- the login check redirects here with ?redirectURL=...; send it back with the form -->
+      <input type="hidden" name="redirectURL" th:if="${param.redirectURL != null}" th:value="${param.redirectURL[0]}">
+      <div class="alert alert-danger" role="alert" th:if="${#fields.hasGlobalErrors()}">
+        <div th:each="err : ${#fields.globalErrors()}" th:text="${err}">로그인 오류</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="loginId" th:text="#{loginId}">로그인 ID</label>
+        <input class="form-control" type="text" id="loginId" th:field="*{loginId}" th:errorclass="is-invalid" autocomplete="username">
+        <div class="invalid-feedback" th:errors="*{loginId}">오류</div>
+      </div>
+      <div class="mb-4">
+        <label class="form-label" for="password" th:text="#{password}">비밀번호</label>
+        <input class="form-control" type="password" id="password" th:field="*{password}" th:errorclass="is-invalid" autocomplete="current-password">
+        <div class="invalid-feedback" th:errors="*{password}">오류</div>
+      </div>
+      <button class="btn btn-primary w-100" type="submit" th:text="#{nav.login}">로그인</button>
+    </form>
+  </section>
+</main>
+</body>
+</html>

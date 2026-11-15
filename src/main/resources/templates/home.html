@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="#{nav.brand}">Spring Shop</title>
+  <link th:href="@{/css/bootstrap.min.css}" href="../static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" th:href="@{/}" th:text="#{nav.brand}">Spring Shop</a>
+    <div>
+      <a class="btn btn-outline-light btn-sm" th:href="@{/members/add}" th:text="#{nav.signup}">회원 가입</a>
+      <a class="btn btn-light btn-sm" th:href="@{/login}" th:text="#{nav.login}">로그인</a>
+    </div>
+  </div>
+</nav>
+<main class="container my-5">
+  <section class="card shadow-sm mx-auto" style="max-width: 36rem;">
+    <div class="card-body p-5 text-center">
+      <h1 class="h3 mb-3" th:text="#{home.guest.title}">상품 관리 연습 앱</h1>
+      <p class="text-muted mb-0" th:text="#{home.guest.lead}">로그인하면 상품을 등록하고 수정할 수 있습니다.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

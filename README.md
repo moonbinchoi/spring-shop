@@ -1,8 +1,54 @@
-# shop
+# spring-shop
 
-Spring Boot 4.1.1 / Java 25 / Gradle 기반 프로젝트입니다.
+상품 관리 연습 앱입니다. 상품 등록·수정과 폼 검증, 회원 가입, 세션 로그인, 필터와 인터셉터를 쓴 로그인 확인, `@Login` 인자 리졸버를 회차마다 하나씩 만들었습니다.
 
-## Dev container로 열기
+Spring Boot 4.1.1, Java 25, Gradle, Thymeleaf를 씁니다.
+
+## 학습 기록
+
+이 앱은 [dev-learning-log](https://github.com/moonbinchoi/dev-learning-log)의 `spring-backend` 트랙 실습 프로젝트입니다. 회차별 레슨과 학습 기록은 [lecture/spring-backend](https://github.com/moonbinchoi/dev-learning-log/tree/main/lecture/spring-backend)에 있습니다.
+
+앱 구조는 인프런 강의 "스프링 MVC 2편 - 백엔드 웹 개발 활용 기술"(김영한)을 따릅니다. Java 코드는 레슨을 진행하면서 직접 작성했습니다.
+
+## 회차별 브랜치
+
+| 브랜치 | 추가한 내용 |
+| --- | --- |
+| `lesson-01` | 상품 목록·상세·등록·수정, Bean Validation과 `BindingResult`로 폼 검증 |
+| `lesson-02` | 회원 가입, 로그인과 로그아웃, 세션에 로그인 회원 저장 |
+| `lesson-03` | 필터와 인터셉터로 로그인 확인, 로그 인터셉터, `@Login` 인자 리졸버 |
+| `docker-devcontainer` | dev container 설정, Claude Code 설치, 줄 끝 규칙, 이 README의 Dev container 안내 |
+| `main` | 위 브랜치를 모두 합친 최신 상태 |
+
+## 실행 방법
+
+호스트에서 실행하려면 JDK 25가 필요합니다.
+
+```bash
+./gradlew bootRun
+```
+
+브라우저에서 http://localhost:8080 으로 접속합니다. dev container 안에서는 8081번 포트를 씁니다. 아래 Dev container 항목을 보세요.
+
+앱을 시작하면 `TestDataInit`이 연습용 기본 데이터를 넣습니다. 데이터는 메모리에만 있어서 앱을 끄면 사라집니다.
+
+- 연습용 계정: 로그인 ID `test`, 비밀번호 `test!`
+- 상품 2개: `itemA`, `itemB`
+
+주요 주소는 다음과 같습니다.
+
+| 주소 | 내용 | 로그인 필요 |
+| --- | --- | --- |
+| `/` | 홈 | 아니요 |
+| `/members/add` | 회원 가입 | 아니요 |
+| `/login` | 로그인 | 아니요 |
+| `/items` | 상품 목록 | 예 |
+| `/items/add` | 상품 등록 | 예 |
+| `/items/{id}`, `/items/{id}/edit` | 상품 상세, 수정 | 예 |
+
+로그인하지 않고 로그인 필요 주소로 가면 `/login`으로 이동하고, 로그인하면 원래 주소로 돌아옵니다.
+
+## Dev container
 
 ### 필요한 것
 
@@ -49,7 +95,7 @@ Spring Boot 4.1.1 / Java 25 / Gradle 기반 프로젝트입니다.
 
 `.gitattributes` 맨 위의 `* text=auto eol=lf`를 지우지 마세요. 컨테이너에는 사용자 `.gitconfig`만 복사되고 호스트 시스템 설정의 `core.autocrlf`는 따라오지 않습니다. 이 줄이 없으면 호스트에서 체크아웃한 CRLF 파일이 컨테이너에서만 modified로 보입니다.
 
-## 빌드와 실행
+### 빌드와 실행
 
 컨테이너 안의 터미널에서 프로젝트 루트의 Gradle wrapper를 사용합니다.
 
@@ -61,7 +107,7 @@ Spring Boot 4.1.1 / Java 25 / Gradle 기반 프로젝트입니다.
 
 dev container 안에서 `bootRun`을 실행하면 `SERVER_PORT` 설정에 따라 http://localhost:8081 로 접속합니다.
 
-## 호스트에서 컨테이너 명령 실행
+### 호스트에서 컨테이너 명령 실행
 
 호스트 터미널에서 컨테이너 안의 명령을 실행할 때는 [devcontainer CLI](https://github.com/devcontainers/cli)를 씁니다. 호스트에 Node.js와 npm이 필요합니다.
 
@@ -75,3 +121,8 @@ devcontainer exec --workspace-folder <이 폴더의 호스트 경로> --remote-e
 - 컨테이너는 이름이 아니라 폴더 라벨로 찾으므로, Rebuild로 컨테이너 이름이 바뀌어도 같은 명령을 씁니다.
 - `remoteUser`(`vscode`)로, 작업 공간 폴더(`/workspaces/<폴더 이름>`)에서 실행됩니다.
 - `docker exec`를 옵션 없이 쓰면 `root`로 `/`에서 실행됩니다. `HOME`이 `/root`가 되어 복사된 `.gitconfig`를 읽지 못하고, root 소유 파일이 생깁니다. `docker exec`를 쓴다면 `-u vscode -w /workspaces/<폴더 이름>`을 함께 줍니다.
+
+## 이 저장소에 없는 것
+
+- **유료 강의 자료.** 강의 예제 코드와 강의 노트(`courses/` 폴더)는 라이선스 문제로 올리지 않았습니다. `gradle/libs.versions.toml`의 주석이 말하는 `projects/docker-lab`은 [docker-lab](https://github.com/moonbinchoi/docker-lab) 저장소로 따로 공개했습니다.
+- **1~3회차의 화면 파일.** 1~3회차에 쓴 뷰 템플릿과 `messages.properties`는 강의 파일과 같거나 거의 같았습니다. 그래서 커밋 이력에서 뺐습니다. 지금 있는 파일은 공개를 위해 AI 어시스턴트 Claude와 함께 새로 쓴 것입니다. 따라서 1~3회차 커밋에는 화면 파일 없이 Java 코드만 있습니다.

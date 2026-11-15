@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="#{member.add.title}">회원 가입</title>
+  <link th:href="@{/css/bootstrap.min.css}" href="../../static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" th:href="@{/}" th:text="#{nav.brand}">Spring Shop</a>
+    <a class="btn btn-outline-light btn-sm" th:href="@{/login}" th:text="#{nav.login}">로그인</a>
+  </div>
+</nav>
+<main class="container my-5" style="max-width: 26rem;">
+  <section class="card shadow-sm">
+    <div class="card-header" th:text="#{member.add.title}">회원 가입</div>
+    <form class="card-body" th:action="@{/members/add}" th:object="${member}" method="post" novalidate>
+      <div class="mb-3">
+        <label class="form-label" for="loginId" th:text="#{loginId}">로그인 ID</label>
+        <input class="form-control" type="text" id="loginId" th:field="*{loginId}" th:errorclass="is-invalid" autocomplete="username">
+        <div class="invalid-feedback" th:errors="*{loginId}">오류</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="password" th:text="#{password}">비밀번호</label>
+        <input class="form-control" type="password" id="password" th:field="*{password}" th:errorclass="is-invalid" autocomplete="new-password">
+        <div class="invalid-feedback" th:errors="*{password}">오류</div>
+      </div>
+      <div class="mb-4">
+        <label class="form-label" for="name" th:text="#{name}">이름</label>
+        <input class="form-control" type="text" id="name" th:field="*{name}" th:errorclass="is-invalid">
+        <div class="invalid-feedback" th:errors="*{name}">오류</div>
+      </div>
+      <div class="d-flex justify-content-end gap-2">
+        <a class="btn btn-outline-secondary" th:href="@{/}" th:text="#{action.cancel}">취소</a>
+        <button class="btn btn-primary" type="submit" th:text="#{action.save}">저장하기</button>
+      </div>
+    </form>
+  </section>
+</main>
+</body>
+</html>

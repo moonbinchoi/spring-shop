@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="#{item.title}">상품 정보</title>
+  <link th:href="@{/css/bootstrap.min.css}" href="../../static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" th:href="@{/}" th:text="#{nav.brand}">Spring Shop</a>
+    <form th:action="@{/logout}" method="post">
+      <button class="btn btn-outline-light btn-sm" type="submit" th:text="#{nav.logout}">로그아웃</button>
+    </form>
+  </div>
+</nav>
+<main class="container my-5" style="max-width: 36rem;">
+  <div class="alert alert-success" role="alert" th:if="${param.status}" th:text="#{item.saved}">상품을 저장했습니다.</div>
+  <section class="card shadow-sm">
+    <div class="card-header" th:text="#{item.title}">상품 정보</div>
+    <dl class="row m-0 p-3">
+      <dt class="col-4" th:text="#{id}">번호</dt>
+      <dd class="col-8" th:text="${item.id}">1</dd>
+      <dt class="col-4" th:text="#{itemName}">상품 이름</dt>
+      <dd class="col-8" th:text="${item.itemName}">itemA</dd>
+      <dt class="col-4" th:text="#{price}">판매 가격</dt>
+      <dd class="col-8" th:text="${#numbers.formatInteger(item.price, 1, 'COMMA')}">10,000</dd>
+      <dt class="col-4" th:text="#{quantity}">재고 수량</dt>
+      <dd class="col-8 mb-0" th:text="${item.quantity}">10</dd>
+    </dl>
+    <div class="card-footer d-flex justify-content-between">
+      <a class="btn btn-outline-secondary" th:href="@{/items}" th:text="#{action.toList}">목록 보기</a>
+      <a class="btn btn-primary" th:href="@{/items/{id}/edit(id=${item.id})}" th:text="#{action.edit}">수정하기</a>
+    </div>
+  </section>
+</main>
+</body>
+</html>
